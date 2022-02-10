@@ -22,17 +22,37 @@
 					"urlencoded": [
 						{
 							"key": "subject",
-							"value": "test",
+							"value": "Daily Learning Newspaper",
 							"type": "text"
 						},
 						{
 							"key": "recipient",
-							"value": "of_alpha@hotmail.com",
+							"value": "of_alpha@hotmail.com;ofalpha@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "text",
-							"value": "test3",
+							"value": "test34",
+							"type": "text"
+						},
+						{
+							"key": "logo",
+							"value": "https://raw.githubusercontent.com/JenHsuan/ALayman/master/views/images/alaymanicon.png",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Daily Learning Newpaper",
+							"type": "text"
+						},
+						{
+							"key": "btnText",
+							"value": "Daily-Learning website",
+							"type": "text"
+						},
+						{
+							"key": "link",
+							"value": "https://daily-learning.herokuapp.com/",
 							"type": "text"
 						}
 					]

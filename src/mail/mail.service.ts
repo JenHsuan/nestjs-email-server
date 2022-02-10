@@ -1,6 +1,9 @@
 import { MailerService } from '@nestjs-modules/mailer';
-import { Injectable } from '@nestjs/common';
+import { HttpCode, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { generate } from '../templates';
+import { MailDto } from './dto/mail.dto';
+import { render } from 'mjml-react';
 
 @Injectable()
 export class MailService {
@@ -9,23 +12,19 @@ export class MailService {
         private configService: ConfigService
     ) { }
 
-    public sendCustomizedMail({
-        recipient,
-        subject,
-        text
-    }: {
-        recipient: string,
-        subject: string,
-        text: string
-    }): void {
+    public sendCustomizedMail(mailDto: MailDto): void {
         this.mailerService
             .sendMail({
-                to: recipient, // list of receivers
+                to: mailDto.recipient, // list of receivers
                 from: this.configService.get<string>('MAILDEV_INCOMING_USER'), // sender address
-                subject: subject, // Subject line
-                html: `<b>${text}</b>`, // HTML body content
+                subject: mailDto.subject, // Subject line
+                html: render(generate(mailDto), { validationLevel: 'soft' }).html
             })
-            .then(res => { console.log(res)})
-            .catch(err => { console.log(err)});
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 }
