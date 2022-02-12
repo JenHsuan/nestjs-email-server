@@ -6,11 +6,21 @@ import { ValidationPipe } from '@nestjs/common';
 import { MailModule } from './mail/mail.module';
 import { MockModule } from './mock/mock.module';
 import { AuthModule } from './auth/auth.module';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(
+    AppModule);
   app.useGlobalPipes(new ValidationPipe());
   app.setGlobalPrefix('api');
+  app.useStaticAssets(join(__dirname, '..', 'views'));
+
+
+  app.set('view engine', 'html');
+
+app.engine('html', require('ejs').renderFile);
+
   const options = new DocumentBuilder()
     .setTitle('API documents')
     .setDescription('The API description')
@@ -25,6 +35,6 @@ async function bootstrap() {
     ],
   });
   SwaggerModule.setup('docs', app, document);
-  await app.listen(3000);
+  await app.listen(8000);
 }
 bootstrap();

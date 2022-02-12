@@ -5,8 +5,12 @@ import { Response } from 'express';
 @Controller('preview')
 export class MockController {
     constructor(private mockService:MockService){}
-    @Get()
+    @Get('mocked')
     preview(@Res() res: Response) {
         return res.send(this.mockService.template)
+    }
+    @Get('edit')
+    edit(@Res() res: Response) {
+        return res.render('index.html')
     }
 }
