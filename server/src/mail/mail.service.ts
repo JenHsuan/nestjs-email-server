@@ -1,7 +1,7 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { HttpCode, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Standard } from '../templates/Standard';
+import { Standard } from 'src/templates/Standard';
 import { MailDto } from './dto/mail.dto';
 import { render } from 'mjml-react';
 

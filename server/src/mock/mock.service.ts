@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-import { Standard } from '../templates/Standard';
+import { Standard } from 'src/templates/Standard';
 import { MailDto } from '../mail/dto/mail.dto';
 import { render } from 'mjml-react';
 @Injectable()

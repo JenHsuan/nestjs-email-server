@@ -2,3 +2,4 @@ node_modules
 cheatsheet
 .env.development.local
 dist
+.vscode
