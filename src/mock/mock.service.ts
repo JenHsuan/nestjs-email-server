@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-import { generate } from '../templates';
+import { Standard } from '../templates/Standard';
 import { MailDto } from '../mail/dto/mail.dto';
 import { render } from 'mjml-react';
 @Injectable()
@@ -23,6 +23,6 @@ export class MockService {
     }
 
     get template() {
-        return render(generate(this.mockedDta), { validationLevel: 'soft' }).html;
+        return render(Standard(this.mockedDta), { validationLevel: 'soft' }).html;
     }
 }

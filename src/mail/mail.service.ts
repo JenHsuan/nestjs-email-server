@@ -1,7 +1,7 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { HttpCode, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { generate } from '../templates';
+import { Standard } from '../templates/Standard';
 import { MailDto } from './dto/mail.dto';
 import { render } from 'mjml-react';
 
@@ -18,7 +18,7 @@ export class MailService {
                 to: mailDto.recipient, // list of receivers
                 from: this.configService.get<string>('MAILDEV_INCOMING_USER'), // sender address
                 subject: mailDto.subject, // Subject line
-                html: render(generate(mailDto), { validationLevel: 'soft' }).html
+                html: render(Standard(mailDto), { validationLevel: 'soft' }).html
             })
             .then(res => {
                 console.log(res);

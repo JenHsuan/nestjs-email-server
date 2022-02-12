@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
+  app.setGlobalPrefix('api');
   const options = new DocumentBuilder()
     .setTitle('API documents')
     .setDescription('The API description')

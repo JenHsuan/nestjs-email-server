@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { readFileSync } from 'fs';
 
 import {
     Mjml,
@@ -15,7 +14,7 @@ import {
     MjmlText
 } from 'mjml-react';
 
-export const generate = ({ title, text, logo, btnText, link, footer }) => {
+export const Standard = ({ title, text, logo, btnText, link, footer }) => {
   let updatedFooter = footer;
   if (typeof footer === 'string') {
     updatedFooter = JSON.parse(footer)
