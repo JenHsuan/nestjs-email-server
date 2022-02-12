@@ -1,0 +1,91 @@
+<div class="main-container">
+    <form [formGroup]="mailForm">
+        <div class="field">
+            <label for="recipient" >Recipient</label>
+            <input
+                type="text"
+                id="recipient"
+                formControlName="recipient"
+                placeholder="recipient?"
+                (keyup)="onFormChanged()">
+            <p class="warn-message"
+               *ngIf="mailForm.get('recipient') && !mailForm.get('recipient')?.valid && mailForm.get('recipient')?.touched">recipient is required!</p>
+        </div>
+        <div class="field">
+            <label for="subject">Subject</label>
+            <input
+                type="text"
+                id="subject"
+                formControlName="subject"
+                (keyup)="onFormChanged()">
+            <p class="warn-message"
+                *ngIf="mailForm.get('subject') && !mailForm.get('subject')?.valid && mailForm.get('subject')?.touched">subject is required!</p>
+        </div>
+        <div class="field">
+            <label for="title">Title</label>
+            <input
+                type="text"
+                id="title"
+                formControlName="title"
+                (keyup)="onFormChanged()">
+            <p class="warn-message"
+                *ngIf="mailForm.get('title') && !mailForm.get('title')?.valid && mailForm.get('title')?.touched">title is required!</p>
+        </div>
+        <div class="field">
+            <label for="text">Text</label>
+            <input
+                type="text"
+                id="text"
+                formControlName="text"
+                (keyup)="onFormChanged()">
+            <p class="warn-message"
+                *ngIf="mailForm.get('text') && !mailForm.get('text')?.valid && mailForm.get('text')?.touched">text is required!</p>
+        </div>
+        <div class="field">
+            <label for="logo">Logo</label>
+            <input
+                type="text"
+                id="logo"
+                formControlName="logo"
+                (keyup)="onFormChanged()">
+            <p class="warn-message"
+                *ngIf="mailForm.get('logo') && !mailForm.get('logo')?.valid && mailForm.get('logo')?.touched">logo is required!</p>
+        </div>
+        <div class="field">
+            <label for="btnText">Btn text</label>
+            <input
+                type="text"
+                id="btnText"
+                formControlName="btnText"
+                (keyup)="onFormChanged()">
+            <p class="warn-message"
+                *ngIf="mailForm.get('btnText') && !mailForm.get('btnText')?.valid && mailForm.get('btnText')?.touched">btnText is required!</p>
+        </div>
+        <div class="field">
+            <label for="link">link</label>
+            <input
+                type="text"
+                id="link"
+                formControlName="link"
+                (keyup)="onFormChanged()">
+            <p class="warn-message"
+                *ngIf="mailForm.get('link') && !mailForm.get('link')?.valid && mailForm.get('link')?.touched">link is required!</p>
+        </div>
+        <div class="field">
+            <label for="footer">footer</label>
+            <input
+                type="text"
+                id="footer"
+                formControlName="footer"
+                (keyup)="onFormChanged()">
+            <p class="warn-message"
+                *ngIf="mailForm.get('footer') && !mailForm.get('footer')?.valid && mailForm.get('footer')?.touched">footer is required!</p>
+        </div>
+        <div class="control-field">
+            <button type="buttton" [disabled]="!mailForm.get('username')?.valid || !mailForm.get('password')?.valid">Send</button>
+        </div>
+        <p class="warn-message" *ngIf="errorMsg">{{errorMsg}}</p>
+        <button type="button" [disabled]="isFormValid">Authentication</button>
+    </form>
+    <app-preview></app-preview>
+</div>

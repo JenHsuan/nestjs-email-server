@@ -1,0 +1,42 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    label {
+        display:block;
+        margin-bottom: 0.5em;
+    }
+    input {
+        width: 300px;
+        outline: 0;
+        font-size: 16px;
+        line-height: 16px;
+        padding: 0.3em;
+    }
+    input:focus {
+        box-shadow: 1px 2px 1px #996;
+    }
+    .field {
+        margin: 0.1em;
+        font-size: 16px;
+    }
+    .control-field {
+        margin: 1.5em 0.5em;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    button {
+        outline: 0;
+        display: inline-block;
+        width: 100%;
+        font-size: 18px;
+        line-height: 18px;
+        padding: 0.5em;
+        cursor: pointer;
+    }
+}
+
+.warn-message {
+    color: red;
+    text-align: center;
+}

@@ -1,0 +1,26 @@
+<div class="main-container">
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <div class="field">
+            <label for="username" >User name</label>
+            <input
+                type="text"
+                id="username"
+                formControlName="username"
+                placeholder="who are you?"
+                #username>
+            <p class="warn-message"
+               *ngIf="authForm.get('username') && !authForm.get('username')?.valid && authForm.get('username')?.touched">User name is required!</p>
+        </div>
+        <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" formControlName="password">
+            <p class="warn-message"
+                *ngIf="authForm.get('password') && !authForm.get('password')?.valid && authForm.get('password')?.touched">Password is required!</p>
+        </div>
+        <div class="control-field">
+            <button type="submit" [disabled]="!authForm.get('username')?.valid || !authForm.get('password')?.valid">Submit</button>
+        </div>
+    </form>
+</div>
+<p class="warn-message" *ngIf="result">{{result}}</p>
+
