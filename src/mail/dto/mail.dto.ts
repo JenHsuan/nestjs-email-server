@@ -44,4 +44,10 @@ export class MailDto {
     })
     link: string;
 
+
+    @IsNotEmpty()
+    @ApiProperty({
+        description: 'footer for the email',
+    })
+    footer: {[key:string]:string}
 }

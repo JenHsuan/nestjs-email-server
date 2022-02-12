@@ -1,13 +1,13 @@
-import { Module } from '@nestjs/common';
-import { MailService } from './mail.service';
-import { MailController } from './mail.controller';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { MailController } from './mail.controller';
+import { MailService } from './mail.service';
 
 @Module({
     imports: [
         ConfigModule.forRoot({
-            envFilePath: ['.env.development.local'],
+          envFilePath: ['.env.development.local'],
         }),
         MailerModule.forRoot({
             transport: {
@@ -30,8 +30,13 @@ import { ConfigModule } from '@nestjs/config';
             //   },
             // },
           }),
+
     ],
-    controllers: [MailController],
-    providers: [MailService],
+    controllers: [
+        MailController
+    ],
+    providers: [
+        MailService
+    ]
 })
 export class MailModule {}

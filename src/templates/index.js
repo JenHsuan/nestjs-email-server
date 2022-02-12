@@ -15,7 +15,12 @@ import {
     MjmlText
 } from 'mjml-react';
 
-export const generate = ({ title, text, logo, btnText, link }) => {
+export const generate = ({ title, text, logo, btnText, link, footer }) => {
+  let updatedFooter = footer;
+  if (typeof footer === 'string') {
+    updatedFooter = JSON.parse(footer)
+  }
+
   return (
     <Mjml>
       <MjmlHead>
@@ -42,6 +47,16 @@ export const generate = ({ title, text, logo, btnText, link }) => {
               {btnText}
             </MjmlButton>
           </MjmlColumn>
+        </MjmlSection>
+        <MjmlSection>
+          {Object.keys(updatedFooter).map(key => {
+            return (
+              <MjmlColumn>
+                <MjmlButton padding="20px" color="#9B9B9B" fontSize={16} backgroundColor="#fff" href={updatedFooter[key]}>
+                  {key}
+                </MjmlButton>
+            </MjmlColumn>)
+          })}
         </MjmlSection>
       </MjmlBody>
     </Mjml>

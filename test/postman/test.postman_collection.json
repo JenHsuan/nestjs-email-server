@@ -6,7 +6,24 @@
 	},
 	"item": [
 		{
-			"name": "test",
+			"name": "auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bd1f9a93-4a91-4f76-b408-fbf0cc211330",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.globals.set(\"access_token\", jsonData.access_token);",
+							"console.log(pm.globals.get(\"access_token\"))",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -14,6 +31,65 @@
 						"key": "Content-Type",
 						"name": "Content-Type",
 						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send mail",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
 						"type": "text"
 					}
 				],
@@ -53,6 +129,11 @@
 						{
 							"key": "link",
 							"value": "https://daily-learning.herokuapp.com/",
+							"type": "text"
+						},
+						{
+							"key": "footer",
+							"value": "{\"blog\":\"1\",\"blog2\":\"2\"}",
 							"type": "text"
 						}
 					]
