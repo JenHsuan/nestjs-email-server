@@ -29,6 +29,7 @@ app.engine('html', require('ejs').renderFile);
 
   const document = SwaggerModule.createDocument(app, options, {
     include: [
+      AppModule,
       MailModule,
       MockModule,
       AuthModule

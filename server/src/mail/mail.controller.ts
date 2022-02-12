@@ -16,4 +16,9 @@ export class MailController {
     sendMail(@Body() body: MailDto) {
         this.mailService.sendCustomizedMail(body);
     }
+
+    @Post('preview')
+    previewMail(@Body() body: MailDto, @Res() res: Response) {
+        return res.send(this.mailService.previewCustomizedMail(body));
+    }
 }

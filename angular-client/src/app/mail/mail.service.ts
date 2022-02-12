@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, tap, of, catchError } from 'rxjs';
+import { Subject, tap, of, catchError, Observable } from 'rxjs';
 import { Mail } from './mail.model';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class MailService {
 
   previewMail(body: Mail) {
     this.http.post<string>('/api/mail/preview', body).pipe(
-      catchError((err:HttpErrorResponse) => of(err.error))
+      catchError(this.handleError<any>())
     ).subscribe({
       next: res => this.mail.next(res.text),
       error: (err:HttpErrorResponse) => {
@@ -22,5 +22,11 @@ export class MailService {
         this.errorMsg.next(err.error)
       }
     })
+  }
+
+  private handleError<T>() {
+    return (error: any): Observable<T> => {
+      return of(error.error as T)
+    }
   }
 }

@@ -1,5 +1,6 @@
 <div class="main-container">
-    <form [formGroup]="mailForm">
+    <form [formGroup]="mailForm" class="mailForm">
+        <h2>Editor</h2>
         <div class="field">
             <label for="recipient" >Recipient</label>
             <input
@@ -81,11 +82,10 @@
             <p class="warn-message"
                 *ngIf="mailForm.get('footer') && !mailForm.get('footer')?.valid && mailForm.get('footer')?.touched">footer is required!</p>
         </div>
-        <div class="control-field">
-            <button type="buttton" [disabled]="!mailForm.get('username')?.valid || !mailForm.get('password')?.valid">Send</button>
-        </div>
         <p class="warn-message" *ngIf="errorMsg">{{errorMsg}}</p>
-        <button type="button" [disabled]="isFormValid">Authentication</button>
+        <div class="controls">
+            <button type="button" [disabled]="isFormValid">Authentication</button>
+        </div>
     </form>
     <app-preview></app-preview>
 </div>

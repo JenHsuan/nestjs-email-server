@@ -50,12 +50,12 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/auth/login",
+					"raw": "http://localhost:8000/api/auth/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"api",
 						"auth",
@@ -140,12 +140,12 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/mail",
+					"raw": "http://localhost:8000/api/mail",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"api",
 						"mail"

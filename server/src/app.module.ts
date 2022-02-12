@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { MockModule } from './mock/mock.module';
 import { MailModule } from './mail/mail.module';
@@ -24,7 +23,6 @@ import { join } from 'path';
     AppController,
   ],
   providers: [
-    AppService,
   ],
 })
 export class AppModule {}

@@ -21,10 +21,14 @@ export class MailService {
                 html: render(Standard(mailDto), { validationLevel: 'soft' }).html
             })
             .then(res => {
-                console.log(res);
+                console.log('send email success', res);
             })
             .catch(err => {
-                console.log(err);
+                console.log('send email failed', err);
             });
+    }
+
+    public previewCustomizedMail(mailDto: MailDto): string {
+        return render(Standard(mailDto), { validationLevel: 'soft' }).html;
     }
 }
