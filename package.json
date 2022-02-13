@@ -4,9 +4,9 @@
   "description": "<p align=\"center\">   <a href=\"http://nestjs.com/\" target=\"blank\"><img src=\"https://nestjs.com/img/logo_text.svg\" width=\"320\" alt=\"Nest Logo\" /></a> </p>",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm install --prefix ./server && npm install --prefix ./angular-client",
-    "heroku-postbuild": "cd angular-client && npm run build",
-    "start": "cd server && npm start"
+    "postinstall": "npm install --prefix ./server & npm install --prefix ./angular-client",
+    "heroku-postbuild": "cd angular-client & npm run build",
+    "start": "cd server & npm start"
   },
   "repository": {
     "type": "git",
