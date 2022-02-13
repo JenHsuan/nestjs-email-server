@@ -4,7 +4,7 @@
   "description": "<p align=\"center\">   <a href=\"http://nestjs.com/\" target=\"blank\"><img src=\"https://nestjs.com/img/logo_text.svg\" width=\"320\" alt=\"Nest Logo\" /></a> </p>",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm install --prefix ./server & npm install --prefix ./angular-client",
+    "postinstall": "npm install --prefix ./server && npm install --prefix ./angular-client",
     "heroku-postbuild": "npm run build --prefix ./angular-client & npm run build-templates --prefix ./server",
     "start": "npm start --prefix ./server"
   },
