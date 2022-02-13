@@ -37,6 +37,6 @@ app.engine('html', require('ejs').renderFile);
     ],
   });
   SwaggerModule.setup('docs', app, document);
-  await app.listen(8000);
+  await app.listen(process.env.PORT || 8000);
 }
 bootstrap();
