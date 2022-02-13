@@ -15,7 +15,6 @@ export class PreviewComponent implements OnInit {
   ngOnInit(): void {
     this.mailService.mail.subscribe(data => {
       this.preview = data ? this.sanitizer.bypassSecurityTrustHtml(data) : '';
-      console.log(this.preview)
     })
   }
 

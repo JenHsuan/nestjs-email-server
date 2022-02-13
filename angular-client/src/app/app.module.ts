@@ -7,12 +7,16 @@ import { MailComponent } from './mail/mail.component';
 import { HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { PreviewComponent } from './preview/preview.component';
+import { ModalComponent } from './modal/modal.component';
+import { ShowModalComponent } from './show-modal/show-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     MailComponent,
-    PreviewComponent
+    PreviewComponent,
+    ModalComponent,
+    ShowModalComponent
   ],
   imports: [
     BrowserModule,

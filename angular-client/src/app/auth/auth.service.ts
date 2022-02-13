@@ -7,7 +7,7 @@ import { User } from '../user/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-  accessToken = new Subject<string>();
+  accessToken = new Subject<string | undefined>();
   constructor(private http: HttpClient) { }
 
 

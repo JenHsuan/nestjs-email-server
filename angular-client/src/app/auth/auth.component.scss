@@ -36,3 +36,11 @@
     color: red;
     text-align: center;
 }
+
+.message-container {
+    width: 250px;
+    word-break: break-all;
+    li {
+        list-style: none;
+    }
+}

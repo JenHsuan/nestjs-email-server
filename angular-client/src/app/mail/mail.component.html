@@ -82,10 +82,13 @@
             <p class="warn-message"
                 *ngIf="mailForm.get('footer') && !mailForm.get('footer')?.valid && mailForm.get('footer')?.touched">footer is required!</p>
         </div>
-        <p class="warn-message" *ngIf="errorMsg">{{errorMsg}}</p>
         <div class="controls">
-            <button type="button" [disabled]="isFormValid">Authentication</button>
+            <button type="button" (click)="onAuth()" [disabled]="!isFormValid || showSendBtn">Authentication</button>
+            <button type="button" (click)="sendMail()" [disabled]="!showSendBtn">Send mail</button>
         </div>
+        <p class="warn-message" *ngIf="errorMsg">{{errorMsg}}</p>
+        <p class="success-message" *ngIf="successMsg">{{successMsg}}</p>
+        <app-show-modal></app-show-modal>
     </form>
     <app-preview></app-preview>
 </div>

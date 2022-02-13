@@ -20,6 +20,11 @@
         <div class="control-field">
             <button type="submit" [disabled]="!authForm.get('username')?.valid || !authForm.get('password')?.valid">Submit</button>
         </div>
+        <div class="message-container">
+            <ul>
+                <li *ngFor="let message of messages">{{ message }}</li>
+            </ul>
+        </div>
     </form>
 </div>
 <p class="warn-message" *ngIf="result">{{result}}</p>

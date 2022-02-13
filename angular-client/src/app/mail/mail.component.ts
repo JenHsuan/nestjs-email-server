@@ -6,6 +6,8 @@ import { Subject } from 'rxjs';
 import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
+import { ShowModalService } from '../show-modal/show-modal.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-mail',
@@ -14,9 +16,15 @@ import {
 })
 export class MailComponent implements OnInit {
   mailSubject = new Subject<Mail>();
-  errorMsg?:string;
+  errorMsg?: string;
+  successMsg?: string;
+  showSendBtn = false;
+  token?: string;
 
-  constructor(private mailService:MailService) { }
+  constructor(
+    private mailService: MailService,
+    private showModalService: ShowModalService,
+    private authService: AuthService) { }
 
   get isFormValid() {
     return this.mailForm.get('recipient')?.valid &&
@@ -32,6 +40,11 @@ export class MailComponent implements OnInit {
   onPreview(){
     this.mailService.previewMail(this.mailForm.value)
   }
+
+  sendMail() {
+    this.mailService.sendMail(this.mailForm.value, this.token);
+  }
+
   private initForm(){
     this.mailForm.patchValue({
         recipient: 'of_alpha@hotmail.com;ofalpha@gmail.com',
@@ -50,17 +63,26 @@ export class MailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-        this.initForm();
-        this.onPreview();
-        this.mailSubject.pipe(
-           debounceTime(300),
-           // ignore new term if same as previous term
-           distinctUntilChanged(),
-        ).subscribe((data:Mail) => {
-            this.mailService.previewMail(data)
-        })
+    this.initForm();
+    this.onPreview();
+    this.mailSubject.pipe(
+       debounceTime(300),
+       // ignore new term if same as previous term
+       distinctUntilChanged(),
+    ).subscribe((data:Mail) => {
+        this.mailService.previewMail(data)
+    })
 
-        this.mailService.errorMsg.subscribe(errorMsg => this.errorMsg = errorMsg);
+    this.authService.accessToken.subscribe(token => {
+      this.token = token;
+      this.showSendBtn = token ? true : false;
+    })
+    this.mailService.successMsg.subscribe(successMsg => this.successMsg = successMsg);
+    this.mailService.errorMsg.subscribe(errorMsg => this.errorMsg = errorMsg);
+  }
+
+  onAuth() {
+    this.showModalService.showModal();
   }
 
   onFormChanged() {
