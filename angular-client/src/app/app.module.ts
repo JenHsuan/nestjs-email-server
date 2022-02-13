@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PreviewComponent } from './preview/preview.component';
 import { ModalComponent } from './modal/modal.component';
 import { ShowModalComponent } from './show-modal/show-modal.component';
+import { ExternalLinkBarComponent } from './external-link-bar/external-link-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +17,8 @@ import { ShowModalComponent } from './show-modal/show-modal.component';
     MailComponent,
     PreviewComponent,
     ModalComponent,
-    ShowModalComponent
+    ShowModalComponent,
+    ExternalLinkBarComponent
   ],
   imports: [
     BrowserModule,

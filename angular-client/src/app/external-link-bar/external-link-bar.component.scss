@@ -1,0 +1,47 @@
+.alayman-icon {
+    box-shadow: 0px 1px 4px #000;
+    border:none;
+    cursor:pointer;
+    z-index: 10000;
+    position:absolute;
+    top: calc(100vh - 50px);
+    left: calc(100vw - 120px);
+    display:flex;
+    justify-items:center;
+    align-items:center;
+    flex-direction:column;
+    font-weight:600;
+    font-size: 36px;
+    border-radius:50%;
+    background-color:transparent;
+    width:35px;
+    height:35px;
+}
+
+.alayman-icon img{
+    width:100%
+}
+
+.fb-icon {
+    box-shadow: 0px 1px 4px #000;
+    border: solid #cecece 1px;
+    cursor:pointer;
+    z-index: 10000;
+    position:absolute;
+    top: calc(100vh - 50px);
+    left: calc(100vw - 60px);
+    display:flex;
+    justify-items:center;
+    align-items:center;
+    flex-direction:column;
+    font-weight:600;
+    font-size: 36px;
+    border-radius:50%;
+    background-color:#fff;
+    width:35px;
+    height:35px;
+}
+
+.fb-icon img{
+    width:100%
+}
