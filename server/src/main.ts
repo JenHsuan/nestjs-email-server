@@ -12,15 +12,12 @@ import { join } from 'path';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule);
-  app.enableCors();
+  //app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
   app.setGlobalPrefix('api');
   app.useStaticAssets(join(__dirname, '..', 'views'));
-
-
   app.set('view engine', 'html');
-
-app.engine('html', require('ejs').renderFile);
+  app.engine('html', require('ejs').renderFile);
 
   const options = new DocumentBuilder()
     .setTitle('API documents')

@@ -1,14 +1,15 @@
 {
   "name": "nestjs-email-server",
   "version": "1.0.0",
-  "description": "<p align=\"center\">   <a href=\"http://nestjs.com/\" target=\"blank\"><img src=\"https://nestjs.com/img/logo_text.svg\" width=\"320\" alt=\"Nest Logo\" /></a> </p>",
+  "description": "Real time editor for the newsletter based on Nestjs, Angular, mjml-React, and nodemailer for visualizing the layout before sending.",
+  "author": "Jen-Hsuan Hsieh (Sean Hsieh)",
   "main": "index.js",
   "engines": {
     "node": "14.18.1",
     "npm": "6.14.15"
   },
   "scripts": {
-    "postinstall": "npm install --prefix ./server && npm install --prefix ./angular-client",
+    "postinstall": "npm install --prefix ./server & npm install --prefix ./angular-client",
     "heroku-postbuild": "npm run build --prefix ./angular-client & npm run build-templates --prefix ./server",
     "start": "npm start --prefix ./server"
   },
@@ -16,7 +17,6 @@
     "type": "git",
     "url": "git+https://github.com/JenHsuan/nestjs-email-server.git"
   },
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/JenHsuan/nestjs-email-server/issues"
