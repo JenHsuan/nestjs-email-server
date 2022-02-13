@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "<p align=\"center\">   <a href=\"http://nestjs.com/\" target=\"blank\"><img src=\"https://nestjs.com/img/logo_text.svg\" width=\"320\" alt=\"Nest Logo\" /></a> </p>",
   "main": "index.js",
+  "engines": {
+    "node": "14.18.1",
+    "npm": "6.14.15"
+  },
   "scripts": {
     "postinstall": "npm install --prefix ./server && npm install --prefix ./angular-client",
     "heroku-postbuild": "npm run build --prefix ./angular-client & npm run build-templates --prefix ./server",
