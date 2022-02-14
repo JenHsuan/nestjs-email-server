@@ -86,8 +86,8 @@
             <button type="button" (click)="onAuth()" [disabled]="!isFormValid || showSendBtn">Authentication</button>
             <button type="button" (click)="sendMail()" [disabled]="!showSendBtn">Send mail</button>
         </div>
-        <p class="warn-message" *ngIf="errorMsg">{{errorMsg}}</p>
-        <p class="success-message" *ngIf="successMsg">{{successMsg}}</p>
+        <p class="warn-message" *ngIf="errorMsg && !successMsg">{{errorMsg}}</p>
+        <p class="success-message" *ngIf="!errorMsg && successMsg">{{successMsg}}</p>
         <app-show-modal></app-show-modal>
     </form>
     <app-preview></app-preview>

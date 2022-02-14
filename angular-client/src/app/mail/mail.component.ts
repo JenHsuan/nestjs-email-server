@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MailService } from '../mail/mail.service';
 import { Mail } from './mail.model';
-import { Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 import { ShowModalService } from '../show-modal/show-modal.service';
 import { AuthService } from '../auth/auth.service';
+import { HttpStatusCode } from '@angular/common/http';
 
 @Component({
   selector: 'app-mail',
@@ -42,7 +43,23 @@ export class MailComponent implements OnInit {
   }
 
   sendMail() {
-    this.mailService.sendMail(this.mailForm.value, this.token);
+    this.mailService.sendMail(this.mailForm.value, this.token).subscribe({
+      next: res => {
+        const date = new Date();
+        this.errorMsg = undefined;
+        this.successMsg = `Mail has been sent, last mail: ${date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()} ${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+      },
+      error: err => {
+        console.log('err:', err);
+        this.successMsg = undefined;
+        this.authService.accessToken.next(undefined)
+        if (err && HttpStatusCode.Unauthorized === err.statusCode) {
+          this.errorMsg = 'Expired, please authenticate again!';
+        } else {
+          this.errorMsg = err.error
+        }
+      }
+    });
   }
 
   private initForm(){
@@ -69,9 +86,10 @@ export class MailComponent implements OnInit {
        debounceTime(300),
        // ignore new term if same as previous term
        distinctUntilChanged(),
-    ).subscribe((data:Mail) => {
-        this.mailService.previewMail(data)
-    })
+       switchMap((data:Mail): Observable<void> => {
+        return of(this.mailService.previewMail(data))
+       })
+    ).subscribe()
 
     this.authService.accessToken.subscribe(token => {
       this.token = token;

@@ -1,11 +1,15 @@
+.icon-group {
+    position: relative;
+}
+
 .alayman-icon {
     box-shadow: 0px 1px 4px #000;
     border:none;
     cursor:pointer;
-    z-index: 10000;
-    position:absolute;
-    top: calc(100vh - 50px);
-    left: calc(100vw - 120px);
+    z-index: 100;
+    position: fixed;
+    bottom: 50px;
+    left: calc(100% - 120px);
     display:flex;
     justify-items:center;
     align-items:center;
@@ -26,10 +30,10 @@
     box-shadow: 0px 1px 4px #000;
     border: solid #cecece 1px;
     cursor:pointer;
-    z-index: 10000;
-    position:absolute;
-    top: calc(100vh - 50px);
-    left: calc(100vw - 60px);
+    z-index: 100;
+    position: fixed;
+    bottom: 50px;
+    left: calc(100% - 60px);
     display:flex;
     justify-items:center;
     align-items:center;
@@ -44,4 +48,30 @@
 
 .fb-icon img{
     width:100%
+}
+
+.doc-icon {
+    box-shadow: 0px 1px 4px #000;
+    border:none;
+    cursor:pointer;
+    z-index: 100;
+    position: fixed;
+    bottom: 50px;
+    left: calc(100% - 180px);
+    display:flex;
+    justify-items:center;
+    align-items:center;
+    flex-direction:column;
+    font-weight:600;
+    font-size: 36px;
+    border-radius:50%;
+    background-color:transparent;
+    width:35px;
+    height:35px;
+    overflow: hidden;
+    i {
+        margin-top: 4px;
+        font-size: 28px;
+        line-height: 28px;
+    }
 }

@@ -1,6 +1,7 @@
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable, throwError } from 'rxjs';
 import { MailService } from '../mail/mail.service';
 import { ShowModalService } from '../show-modal/show-modal.service';
 import { AuthService } from './auth.service';
@@ -35,22 +36,22 @@ export class AuthComponent implements OnInit {
 
   onSubmit() {
     this.messages = [];
-    this.authService.getAccessToken(this.authForm.value)
-      .subscribe({
+    this.authService.getAccessToken(this.authForm.value).subscribe({
         next: res => {
-          if (HttpStatusCode.Unauthorized === res.statusCode) {
-            this.result = 'Please make sure the user name and password are correct!'
-          } else if (res.access_token) {
-            this.messages.push(JSON.stringify(res));
+          if (res && res.access_token) {
             this.showModalService.hideModal();
             this.mailService.successMsg.next('Authenticated!');
+            this.authForm.reset();
+          } else {
+            this.result = 'Please make sure the user name and password are valid!';
+            console.log('Unkown error');
           }
         },
-        error: res => {
-          if (HttpStatusCode.Unauthorized === res.statusCode) {
-            this.result = 'Please make sure the user name and password are correct!'
+        error: err => {
+          if (HttpStatusCode.Unauthorized === err.statusCode) {
+            this.result = 'Please make sure the user name and password are valid!';
           }
-          console.log('error:', res)
+          console.log('error:', err)
         }
       })
   }
