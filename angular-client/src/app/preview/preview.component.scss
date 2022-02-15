@@ -1,5 +1,20 @@
-.demo {
-    width: 600px;
+
+.demo-tablet {
+    width: 800px;
+    border: #cecece 1px solid;
+    min-height:100%;
+    margin: 1em;
+}
+
+.demo-mobile {
+    width: 380px;
+    border: #cecece 1px solid;
+    min-height:100%;
+    margin: 1em;
+}
+
+.demo-desktop {
+    width: 1000px;
     border: #cecece 1px solid;
     min-height:100%;
     margin: 1em;
@@ -9,3 +24,9 @@ h2 {
     text-align: center;
 }
 
+
+.radio-butto-group {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+}

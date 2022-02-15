@@ -1,5 +1,13 @@
 
 <h2>Newsletter Mail Preview</h2>
-<div class="demo">
+<div class="radio-butto-group">
+    <form [formGroup]="layoutForm">
+        <input type="radio" value="0" formControlName="layout" (click)="setLayout(0)"> Mobile (380px)
+        <input type="radio" value="1" formControlName="layout" (click)="setLayout(1)"> Tablet (800px)
+        <input type="radio" value="2" formControlName="layout" (click)="setLayout(2)"> Desktop (1000px)
+    </form>
+</div>
+
+<div [ngClass]="getProperLayout()">
     <div [innerHTML]="preview"></div>
 </div>
