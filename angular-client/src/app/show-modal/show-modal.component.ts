@@ -1,4 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
+import { Router } from '@angular/router';
 import { ShowModalService } from './show-modal.service';
 
 @Component({
@@ -7,20 +8,11 @@ import { ShowModalService } from './show-modal.service';
   styleUrls: ['./show-modal.component.scss']
 })
 export class ShowModalComponent implements OnInit {
-  private modalClass: string = 'hhidden';
-  constructor(private showModalService:ShowModalService) { }
+  constructor(private showModalService: ShowModalService) { }
 
-  getModalClass() {
-    return this.modalClass;
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    this.showModalService.shouldModalOpen.subscribe((shouldShowModal: boolean) => {
-      this.setDialog(shouldShowModal);
-    })
-  }
-
-  setDialog(shouldOpen:boolean) {
-    this.modalClass = shouldOpen ? 'sshow' : 'hhidden';
+  close() {
+    this.showModalService.hideModal();
   }
 }

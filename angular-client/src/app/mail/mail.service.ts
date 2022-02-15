@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpStatusCode } from '@ang
 import { Injectable } from '@angular/core';
 import { Subject, tap, of, catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { MessageService } from '../message/message.service';
 import { Mail } from './mail.model';
 
 @Injectable({
@@ -9,12 +10,12 @@ import { Mail } from './mail.model';
 })
 export class MailService {
   mail = new Subject<string>();
-  errorMsg = new Subject<string | undefined>();
-  successMsg = new Subject<string | undefined>();
+  //errorMsg = new Subject<string | undefined>();
+  //successMsg = new Subject<string | undefined>();
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService
+    private messageService: MessageService
   ) { }
 
   previewMail(body: Mail) {
@@ -26,7 +27,7 @@ export class MailService {
       next: res => this.mail.next(res),
       error: (err) => {
         console.log('err:', err);
-        this.errorMsg.next(err.messages)
+        this.messageService.errorMsg.next(err.messages);
       }
     })
   }

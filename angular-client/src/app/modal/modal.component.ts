@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { fromEvent } from 'rxjs';
 import { ShowModalService } from '../show-modal/show-modal.service';
 
 @Component({
@@ -10,10 +12,11 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @ViewChild("modalBackground")
   modalBackground!: ElementRef;
 
-  constructor(private showModalService:ShowModalService) { }
+  constructor(private showModalService: ShowModalService) { }
+
   ngAfterViewInit(): void {
-    this.modalBackground.nativeElement.addEventListener('click', ()=> {
-         this.close()
+    fromEvent(this.modalBackground.nativeElement, 'click').subscribe(() => {
+      this.close()
     })
   }
 

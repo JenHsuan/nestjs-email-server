@@ -1,0 +1,4 @@
+<div class="message-container">
+    <p class="warn-message" *ngIf="errorMsg && !successMsg">{{errorMsg}}</p>
+    <p class="success-message" *ngIf="!errorMsg && successMsg">{{successMsg}}</p>
+</div>

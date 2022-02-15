@@ -1,18 +1,26 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShowModalService {
-  shouldModalOpen = new Subject<boolean>();
-  constructor() { }
+  constructor(private router: Router) { }
 
   showModal() {
-    this.shouldModalOpen.next(true);
+    this.router.navigate([{
+      outlets: {
+        popup: 'compose'
+      }
+    }])
   }
 
   hideModal() {
-    this.shouldModalOpen.next(false);
+    this.router.navigate([{
+      outlets: {
+        popup: null
+      }
+    }])
   }
 }

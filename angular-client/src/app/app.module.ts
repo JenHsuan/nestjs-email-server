@@ -10,6 +10,9 @@ import { PreviewComponent } from './preview/preview.component';
 import { ModalComponent } from './modal/modal.component';
 import { ShowModalComponent } from './show-modal/show-modal.component';
 import { ExternalLinkBarComponent } from './external-link-bar/external-link-bar.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthModalComponent } from './auth-modal/auth-modal.component';
+import { MessageComponent } from './message/message.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,12 +21,15 @@ import { ExternalLinkBarComponent } from './external-link-bar/external-link-bar.
     PreviewComponent,
     ModalComponent,
     ShowModalComponent,
-    ExternalLinkBarComponent
+    ExternalLinkBarComponent,
+    AuthModalComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

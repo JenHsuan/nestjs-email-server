@@ -9,6 +9,8 @@ import {
 import { ShowModalService } from '../show-modal/show-modal.service';
 import { AuthService } from '../auth/auth.service';
 import { HttpStatusCode } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { MessageService } from '../message/message.service';
 
 @Component({
   selector: 'app-mail',
@@ -17,15 +19,18 @@ import { HttpStatusCode } from '@angular/common/http';
 })
 export class MailComponent implements OnInit {
   mailSubject = new Subject<Mail>();
-  errorMsg?: string;
-  successMsg?: string;
+  //errorMsg?: string;
+  //successMsg?: string;
   showSendBtn = false;
   token?: string;
 
   constructor(
     private mailService: MailService,
     private showModalService: ShowModalService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private messageService: MessageService
+    //private router: Router
+  ) { }
 
   get isFormValid() {
     return this.mailForm.get('recipient')?.valid &&
@@ -46,18 +51,16 @@ export class MailComponent implements OnInit {
     this.mailService.sendMail(this.mailForm.value, this.token).subscribe({
       next: res => {
         const date = new Date();
-        this.errorMsg = undefined;
-        this.successMsg = `Mail has been sent, last mail: ${date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()} ${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+        this.messageService.successMsg.next(`Mail has been sent, last mail: ${date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()} ${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`);
       },
       error: err => {
         console.log('err:', err);
-        this.successMsg = undefined;
+        let errMsg = err.error;
         this.authService.accessToken.next(undefined)
         if (err && HttpStatusCode.Unauthorized === err.statusCode) {
-          this.errorMsg = 'Expired, please authenticate again!';
-        } else {
-          this.errorMsg = err.error
+          errMsg = 'Expired, please authenticate again!';
         }
+        this.messageService.errorMsg.next(errMsg);
       }
     });
   }
@@ -95,8 +98,8 @@ export class MailComponent implements OnInit {
       this.token = token;
       this.showSendBtn = token ? true : false;
     })
-    this.mailService.successMsg.subscribe(successMsg => this.successMsg = successMsg);
-    this.mailService.errorMsg.subscribe(errorMsg => this.errorMsg = errorMsg);
+    // this.mailService.successMsg.subscribe(successMsg => this.successMsg = successMsg);
+    // this.mailService.errorMsg.subscribe(errorMsg => this.errorMsg = errorMsg);
   }
 
   onAuth() {
