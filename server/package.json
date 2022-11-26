@@ -10,7 +10,7 @@
     "build": "nest build",
     "build-templates": "babel src --out-dir dist",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start": "node dist/main.js",
     "start:dev": "npm run build-templates & nest start",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",

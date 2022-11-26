@@ -4,3 +4,4 @@ cheatsheet
 dist
 .vscode
 views
+fly-env.sh
